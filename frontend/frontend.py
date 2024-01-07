@@ -12,6 +12,22 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+# About Us Page
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+# Blog Page
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
+
+# Contact Page
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 # Search Page
 @app.route("/search", methods=["GET"])
 def search():
