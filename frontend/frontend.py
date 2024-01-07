@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import requests
 import os
 from dotenv import load_dotenv
 
@@ -6,21 +7,30 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Home Page
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
+# Search Page
+@app.route("/search", methods=["GET"])
+def search():
+    return render_template("search.html")
 
-@app.route("/products")
-def products():
-    return render_template("products.html")
+# Search Result Page
+@app.route("/search_results", methods=["GET", "POST"])
+def search_results():
+    if request.method == "POST":
+        # Handle the POST request
+        pass
 
-@app.route("/store")
-def store():
-    return render_template("store.html")
+    room_type = request.args.get("room_type")
+
+    # Call backend function to get rooms by room type
+    # Replace with your actual backend function
+    search_results = requests.get(f"http://127.0.0.1:5001/room/type/{room_type}").json()
+
+    return render_template("search_results.html", search_results=search_results)
 
 if __name__ == "__main__":
     app.run(host=os.getenv("HOST"), port=os.getenv("HOST_PORT"), debug=os.getenv("DEBUG"))
