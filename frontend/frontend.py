@@ -28,6 +28,11 @@ def blog():
 def contact():
     return render_template("contact.html")
 
+# Booking Page
+@app.route("/booking")
+def booking():
+    return render_template("booking.html")
+
 # Search Page
 @app.route("/search", methods=["GET"])
 def search():

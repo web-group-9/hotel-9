@@ -23,7 +23,7 @@
 
 	<header class="header">
 		<div class="header_content d-flex flex-row align-items-center justify-content-start">
-			<div class="logo"><a href="#">The River</a></div>
+			<div class="logo"><a href="#">Hotel 9</a></div>
 			<div class="ml-auto d-flex flex-row align-items-center justify-content-start">
 				<nav class="main_nav">
 					<ul class="d-flex flex-row align-items-start justify-content-start">
@@ -31,13 +31,13 @@
 						<li class="active"><a href="{{ url_for('about')}}">About us</a></li>
 						<li><a href="#">Rooms</a></li>
 						<li><a href="{{ url_for('blog')}}">Blog</a></li>
-						<li><a href="{{ url_for(contact')}}">Contact</a></li>
+						<li><a href="{{ url_for('contact')}}">Contact</a></li>
 					</ul>
 				</nav>
 				<div class="book_button"><a href="booking.html">Book Online</a></div>
 				<div class="header_phone d-flex flex-row align-items-center justify-content-center">
-					<img src="images/phone.png" alt="">
-					<span>0183-12345678</span>
+					<img src="{{ url_for('static', filename='images/phone.png') }}" alt="">
+					<span>0123-12345678</span>
 				</div>
 
 				<!-- Hamburger Menu -->
@@ -53,18 +53,17 @@
 		<div class="menu_content">
 			<nav class="menu_nav text-right">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About us</a></li>
-					<li><a href="#">Rooms</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
+					<li><a href="{{ url_for('index')}}">Home</a></li>
+                    <li><a href="{{ url_for('about')}}">About us</a></li>
+                    <li><a href="#">Rooms</a></li>
+                    <li><a href="{{ url_for('blog')}}">Blog</a></li>
+                    <li><a href="{{ url_for('contact')}}">Contact</a></li>
 			</nav>
 		</div>
 		<div class="menu_extra">
 			<div class="menu_book text-right"><a href="#">Book online</a></div>
-			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">
-				<img src="images/phone-2.png" alt="">
+			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">       
+				<img src="{{ url_for('static', filename='images/phone-2.png') }}" alt="">
 				<span>0183-12345678</span>
 			</div>
 		</div>
@@ -73,7 +72,7 @@
 	<!-- Home -->
 
 	<div class="home">
-		<div class="background_image" style="background-image:url(images/about.jpg)"></div>
+		<div class="background_image" style="background-image:url({{ url_for('static', filename='images/about.jpg') }})"></div>
 		<div class="home_container">
 			<div class="container">
 				<div class="row">
@@ -106,7 +105,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="about_title"><h2>The River / 10 years of excellence</h2></div>
+					<div class="about_title"><h2>Hotel 9 / 9 layers of excellence</h2></div>
 				</div>
 			</div>
 			<div class="row about_row">
@@ -117,17 +116,17 @@
 						<div class="about_text">
 							<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit.</p>
 						</div>
-						<div class="about_sig"><img src="images/sig.png" alt=""></div>
+						<div class="about_sig"><img src="{{ url_for('static', filename='images/sig.png') }}" alt=""></div>
 					</div>
 				</div>
 
 				<!-- About Images -->
 				<div class="col-lg-6">
-					<div class="about_images d-flex flex-row align-items-start justify-content-between flex-wrap">
-						<img src="images/about_1.png" alt="">
-						<img src="images/about_2.png" alt="">
-						<img src="images/about_3.png" alt="">
-					</div>
+					<!-- <div class="about_images d-flex flex-row align-items-start justify-content-between flex-wrap">
+						<img src="{{ url_for('static', filename='images/about_1.png') }}" alt="">
+						<img src="{{ url_for('static', filename='images/about_2.png') }}" alt="">
+						<img src="{{ url_for('static', filename='images/about_3.png') }}" alt="">
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -141,7 +140,7 @@
 				
 				<div class="col-xl-6 order-xl-1 order-2">
 					<div class="split_section_image">
-						<div class="background_image" style="background-image:url(images/milestones.jpg)"></div>
+						<div class="background_image" style="background-image:url({{ url_for('static', filename='images/milestones.jpg') }})"></div>
 					</div>
 				</div>
 
@@ -236,7 +235,7 @@
 				<!-- Loaders Image -->
 				<div class="col-xl-6">
 					<div class="split_section_image split_section_left_image">
-						<div class="background_image" style="background-image:url(images/loaders.jpg)"></div>
+						<div class="background_image" style="background-image:url({{ url_for('static', filename='images/loaders.jpg') }})"></div>
 					</div>
 				</div>
 
@@ -247,7 +246,7 @@
 	<!-- Testimonials -->
 
 	<div class="testimonials">
-		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/testimonials.jpg" data-speed="0.8"></div>
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='images/testimonials.jpg') }}" data-speed="0.8"></div>
 		<div class="testimonials_overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -264,7 +263,7 @@
 								<div class="testimonial_text">
 									<p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic.</p>
 								</div>
-								<div class="testimonial_image"><img src="images/user_1.jpg" alt=""></div>
+								<div class="testimonial_image"><img src="{{ url_for('static', filename='images/user_1.jpg') }}" alt=""></div>
 								<div class="testimonial_author"><a href="#">Samantha Smith</a>, Greece</div>
 							</div>
 
@@ -275,7 +274,7 @@
 								<div class="testimonial_text">
 									<p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic.</p>
 								</div>
-								<div class="testimonial_image"><img src="images/user_2.jpg" alt=""></div>
+								<div class="testimonial_image"><img src="{{ url_for('static', filename='images/user_2.jpg') }}" alt=""></div>
 								<div class="testimonial_author"><a href="#">Michael Doe</a>, Italy</div>
 							</div>
 
@@ -286,7 +285,7 @@
 								<div class="testimonial_text">
 									<p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio vestibulum est mattis effic.</p>
 								</div>
-								<div class="testimonial_image"><img src="images/user_3.jpg" alt=""></div>
+								<div class="testimonial_image"><img src="{{ url_for('static', filename='images/user_3.jpg') }}" alt=""></div>
 								<div class="testimonial_author"><a href="#">Luis Garcia</a>, Spain</div>
 							</div>
 
@@ -297,90 +296,79 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
+<!-- Footer -->
 
-	<footer class="footer">
-		<div class="footer_content">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="footer_logo_container text-center">
-							<div class="footer_logo">
-								<a href="#"></a>
-								<div>The River</div>
-								<div>since 1945</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row footer_row">
-					
-					<!-- Address -->
-					<div class="col-lg-3">
-						<div class="footer_title">Our Address</div>
-						<div class="footer_list">
-							<ul>
-								<li>Beach Str. 345</li>
-								<li>67559 Miami</li>
-								<li>USA</li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- Reservations -->
-					<div class="col-lg-3">
-						<div class="footer_title">Reservations</div>
-						<div class="footer_list">
-							<ul>
-								<li>Tel: 345 5667 889</li>
-								<li>Fax; 6783 4567 889</li>
-								<li>reservations@hotelriver.com</li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- Newsletter -->
-					<div class="col-lg-3">
-						<div class="footer_title">Newsletter</div>
-						<div class="newsletter_container">
-							<form action="#" class="newsletter_form" id="newsletter_form">
-								<input type="email" class="newsletter_input" placeholder="Your email address" required="required">
-								<button class="newsletter_button">Subscribe</button>
-							</form>
-						</div>
-					</div>
-
-					<!-- Footer images -->
-					<div class="col-lg-3">
-						<div class="certificates d-flex flex-row align-items-start justify-content-lg-between justify-content-start flex-lg-nowrap flex-wrap">
-							<div class="cert"><img src="images/cert_1.png" alt=""></div>
-							<div class="cert"><img src="images/cert_2.png" alt=""></div>
+<footer class="footer">
+	<div class="footer_content">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="footer_logo_container text-center">
+						<div class="footer_logo">
+							<a href="#"></a>
+							<div>Hotel 9</div>
+							<div>since 2024</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="row footer_row justify-content-center">
+				
+				<!-- Address -->
+				<div class="col-lg-3">
+					<div class="footer_title">Our Address</div>
+					<div class="footer_list">
+						<ul>
+							<li>No. 1號, Section 3, Zhongxiao E Rd, Da’an District</li>
+							<li>10608 Taipei</li>
+							<li>Taiwan</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Reservations -->
+				<div class="col-lg-3">
+					<div class="footer_title">Reservations</div>
+					<div class="footer_list">
+						<ul>
+							<li>Tel: 123 4567 8910</li>
+							<li>Fax; 1234 5678 910</li>
+							<li>reservations@hotel9.com</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Newsletter -->
+				<div class="col-lg-3">
+					<div class="footer_title">Newsletter</div>
+					<div class="newsletter_container">
+						<form action="#" class="newsletter_form" id="newsletter_form">
+							<input type="email" class="newsletter_input" placeholder="Your email address" required="required">
+							<button class="newsletter_button">Subscribe</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="copyright">
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	</div>
+	<div class="copyright">
 </div>
 	</footer>
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="styles/bootstrap-4.1.2/popper.js"></script>
-<script src="styles/bootstrap-4.1.2/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.3.4/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/progressbar/progressbar.min.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="plugins/jquery-datepicker/jquery-ui.js"></script>
-<script src="js/about.js"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/owl.carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/easing/easing.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/progressbar/progressbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
+<script src="{{ url_for('static', filename='js/about.js') }}"></script>
 </body>
 </html>

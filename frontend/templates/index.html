@@ -35,7 +35,7 @@
 						<li><a href="{{ url_for('contact')}}">Contact</a></li>
 					</ul>
 				</nav>
-				<div class="book_button"><a href="booking.html">Book Online</a></div>
+				<div class="book_button"><a href="{{ url_for('booking')}}">Book Online</a></div>
 				<div class="header_phone d-flex flex-row align-items-center justify-content-center">
 					<img src="{{ url_for('static', filename='images/phone.png') }}" alt="">
 					<span>0123-12345678</span>
@@ -54,18 +54,16 @@
 		<div class="menu_content">
 			<nav class="menu_nav text-right">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About us</a></li>
-					<li><a href="#">Rooms</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
+					<li><a href="{{ url_for('index')}}">Home</a></li>
+                    <li><a href="{{ url_for('about')}}">About us</a></li>
+                    <li><a href="#">Rooms</a></li>
+                    <li><a href="{{ url_for('blog')}}">Blog</a></li>
+                    <li><a href="{{ url_for('contact')}}">Contact</a></li>
 			</nav>
 		</div>
 		<div class="menu_extra">
 			<div class="menu_book text-right"><a href="#">Book online</a></div>
-			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">
-                
+			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">              
 				<img src="{{ url_for('static', filename='images/phone-2.png') }}" alt="">
 				<span>0183-12345678</span>
 			</div>
@@ -267,7 +265,7 @@
 				<!-- About Content -->
 				<div class="col-lg-6">
 					<div class="about_content">
-						<div class="about_title"><h2>Hotel 9 / 10 years of excellence</h2></div>
+						<div class="about_title"><h2>Hotel 9 / 9 layers of excellence</h2></div>
 						<div class="about_text">
 							<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit.</p>
 						</div>
@@ -276,11 +274,11 @@
 
 				<!-- About Images -->
 				<div class="col-lg-6">
-					<div class="about_images d-flex flex-row align-items-center justify-content-between flex-wrap">
+					<!-- <div class="about_images d-flex flex-row align-items-center justify-content-between flex-wrap">
 						<img src="{{ url_for('static', filename='images/about_1.png') }}" alt="">
 						<img src="{{ url_for('static', filename='images/about_2.png') }}" alt="">
 						<img src="{{ url_for('static', filename='images/about_3.png') }}" alt="">
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -359,7 +357,7 @@
 								<div class="background_image" style="background-image:url({{ url_for('static', filename='images/booking_1.jpg') }})"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="booking.html">Family Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking')}}">Family Room</a></div>
 							</div>
 
 							<!-- Slide -->
@@ -367,7 +365,7 @@
 								<div class="background_image" style="background-image:url({{ url_for('static', filename='images/booking_2.jpg') }})"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="booking.html">Deluxe Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking')}}">Deluxe Room</a></div>
 							</div>
 
 							<!-- Slide -->
@@ -375,7 +373,7 @@
 								<div class="background_image" style="background-image:url({{ url_for('static', filename='images/booking_3.jpg') }})"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="booking.html">Single Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking')}}">Single Room</a></div>
 							</div>
 
 						</div>
