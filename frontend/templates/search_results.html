@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <ul>
+        {% for room in search_results %}
+            <li>
+                <h2>{{ room.room_type }}</h2>
+                <p>Price per night: ${{ room.room_number }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
