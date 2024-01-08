@@ -1,14 +1,118 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, jsonify, request, redirect, url_for
+import os
+from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from flask_login import UserMixin, current_user, login_user, login_required
+from app.models.booking import Booking
+from app.login_manager import users
+from app.models.room import Room
+from app.models.room_type import RoomType
 
-dashboard_blueprint = Blueprint("dashboard", __name__, template_folder="templates/dashboard")
 
-@dashboard_blueprint.route("/")
+dashboard_blueprint = Blueprint("dashboard", __name__)
+
+
+@dashboard_blueprint.route("/mainpageformanagement")
+@login_required
 def index():
-    return render_template("index.html")
+        # Fetch data from Booking and Room tables
+    booking = Booking.query.all()
+    room = Room.query.all()
+    roomtype = RoomType.query.all()
 
-@dashboard_blueprint.route("/login")
+    # Calculate monthly earnings
+    monthly_earnings = 0.0
+    current_month = datetime.now().month
+
+    annual_earnings = 0.0
+    current_year = datetime.now().year
+
+    for current_booking in booking:
+        # Check if the booking is in the current month
+        if current_booking.check_in_date.month == current_month or current_booking.check_out_date.month == current_month:
+            # Calculate the number of days the room is booked
+            booking_days = (current_booking.check_out_date - current_booking.check_in_date).days + 1
+
+            # Find the corresponding room
+            current_room = next((room for room in room if room.room_number == current_booking.room_number), None)
+
+            if current_room:
+                # Find the corresponding room type
+                room_type = next((rt for rt in roomtype if rt.room_type == current_room.room_type_id), None)
+
+                if room_type:
+                    # Add the earnings for the booking to the total
+                    monthly_earnings += booking_days * float(room_type.price_per_night)
+
+        # Check if the booking is in the current year
+        if current_booking.check_in_date.year == current_year or current_booking.check_out_date.year == current_year:
+            # Calculate the number of days the room is booked
+            booking_days = (current_booking.check_out_date - current_booking.check_in_date).days + 1
+
+            # Find the corresponding room
+            current_room = next((room for room in room if room.room_number == current_booking.room_number), None)
+
+            if current_room:
+                # Find the corresponding room type
+                room_type = next((rt for rt in roomtype if rt.room_type == current_room.room_type_id), None)
+
+                if room_type:
+                    # Add the earnings for the booking to the total
+                    annual_earnings += booking_days * float(room_type.price_per_night)
+
+    daily_housing_rate = 100.0  # You can replace this with the actual daily housing rate
+    total_days_in_year = 365
+
+    # Calculate the number of days booked in the current year
+    days_booked = sum((current_booking.check_out_date - current_booking.check_in_date).days + 1 for current_booking in booking
+                      if current_booking.check_in_date.year == current_year or current_booking.check_out_date.year == current_year)
+
+    # Calculate progress percentage
+    progress_percentage = (days_booked / total_days_in_year) * 100
+
+    return render_template("dashboard/index.html", user=current_user,monthly_earnings=monthly_earnings,annual_earnings=annual_earnings,progress_percentage=progress_percentage)
+
+@dashboard_blueprint.route("/get_housing_rate_data")
+def get_housing_rate_data():
+    # Fetch data from Booking table
+    booking = Booking.query.all()
+
+    # Calculate housing rate for each month
+    housing_rate_data = {}
+    for booking in booking:
+        current_month = booking.check_in_date.month
+        key = f"{current_month:02d}"  # Format month as two digits (e.g., '01' for January)
+        
+        # Calculate the number of days the room is booked
+        booking_days = (booking.check_out_date - booking.check_in_date).days + 1
+
+        # Calculate total earnings for the month
+        monthly_earnings = housing_rate_data.get(key, 0) + booking_days
+
+        # Update the housing rate data
+        housing_rate_data[key] = monthly_earnings
+
+    data = {
+        "labels": list(housing_rate_data.keys()),
+        "values": list(housing_rate_data.values())
+    }
+
+    return jsonify(data)
+
+@dashboard_blueprint.route('/', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    if request.method == 'POST':
+        role = request.form['role']
+        password = request.form['password']
+        user = users.get(role)
+
+        if user and user.check_password(password):
+            login_user(user)
+            return redirect(url_for('dashboard.index'))
+    return render_template('dashboard/login.html')
+
+
 
 @dashboard_blueprint.route("/utilities-other")
 def utilities_other():
