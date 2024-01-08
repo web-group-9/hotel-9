@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from app.database import db
+from app.login_manager import login_manager
 
 def create_app():
     app = Flask(__name__)
@@ -8,6 +9,9 @@ def create_app():
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS")
+    
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
     
     db.init_app(app)
 
