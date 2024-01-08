@@ -33,10 +33,10 @@ def contact():
 def booking():
     return render_template("booking.html")
 
-# Search Page
-@app.route("/search", methods=["GET"])
-def search():
-    return render_template("search.html")
+# Rooms Page
+@app.route("/rooms", methods=["GET"])
+def rooms():
+    return render_template("rooms.html")
 
 # Search Result Page
 @app.route("/search_results", methods=["GET", "POST"])
