@@ -72,8 +72,6 @@ def booking_complete():
             "contact_info": guest_contact_info
         }).json()
 
-        print(guest)
-
         guest_id = guest["guest_id"]
         
         result = requests.post("http://127.0.0.1:5001/booking/create", json={
