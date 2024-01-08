@@ -1,7 +1,26 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete booking</title>    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.css') }}">
+    <link href="{{ url_for('static', filename='plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/owl.theme.default.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/animate.css') }}">
+    <link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/booking.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/booking_responsive.css') }}">
+</head>
+<body>
+    
+</body>
+</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contact</title>
+<title>Booking</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The River template project">
@@ -12,14 +31,28 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.3.4/animate.css') }}">
 <link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/booking.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/booking_responsive.css') }}">
 </head>
 <body>
 
 <div class="super_container">
 	
 	<!-- Header -->
+    <!-- <h1></h1>
+
+        <form action="#" class="booking_form" id="booking_form"">
+            <div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
+                <div class="booking_input_container d-flex flex-row align-items-start justify-content-start flex-wrap">
+                    <div><input type="text" class="datepicker booking_input booking_input_a booking_in" placeholder="Check in" required="required"></div>
+                    <div><input type="text" class="datepicker booking_input booking_input_a booking_out" placeholder="Check out" required="required"></div>
+                    <div><input type="number" class="booking_input booking_input_b" placeholder="People" required="required"></div>
+                    <div><input type="number" class="booking_input booking_input_b" placeholder="Rooms" required="required"></div>
+                </div>
+                <div><button class="booking_button trans_200">Book Now</button></div>
+            </div>
+        </form>
+    </div> -->
 
 	<header class="header">
 		<div class="header_content d-flex flex-row align-items-center justify-content-start">
@@ -31,7 +64,7 @@
 						<li><a href="{{ url_for('about')}}">About us</a></li>
 						<li><a href="{{ url_for('rooms')}}">Rooms</a></li>
 						<li><a href="{{ url_for('blog')}}">Blog</a></li>
-						<li class="active"><a href="{{ url_for('contact')}}">Contact</a></li>
+						<li><a href="{{ url_for('contact')}}">Contact</a></li>
 					</ul>
 				</nav>
 				<div class="book_button"><a href="{{ url_for('booking')}}">Book Online</a></div>
@@ -72,72 +105,16 @@
 	<!-- Home -->
 
 	<div class="home">
-		<div class="background_image" style="background-image:url({{ url_for('static', filename='images/contact.jpg') }})"></div>
+		<div class="background_image" style="background-image:url({{ url_for('static', filename='images/booking.jpg') }})"></div>
 		<div class="home_container">
 			<div class="container">
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Contact</div>
+							<div class="home_title">Booking placed. Enjoy your stay!</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Contact -->
-
-	<div class="contact">
-		<div class="container">
-			<div class="row">
-				
-				<!-- Contact Content -->
-				<div class="col-lg-6">
-					<div class="contact_content">
-						<div class="contact_title"><h2>Get in touch</h2></div>
-						<div class="contact_list">
-							<ul>
-								<li>No. 1號, Section 3, Zhongxiao E Rd, Da’an District, Taipei City</li>
-								<li>+886 4567 8910</li>
-								<li>reservations@hotel9.com</li>
-							</ul>
-						</div>
-						<div class="contact_form_container">
-							<form action="#" class="contact_form" id="contact_form">
-								<div class="row">
-									<div class="col-md-6 input_container">
-										<input type="text" class="contact_input" placeholder="Your name" required="required">
-									</div>
-									<div class="col-md-6 input_container">
-										<input type="email" class="contact_input" placeholder="Your email address" required="required">
-									</div>
-								</div>
-								<div class="input_container"><input type="text" class="contact_input" placeholder="Subject"></div>
-								<div class="input_container"><textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea></div>
-								<button class="contact_button">Send</button>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<!-- Google Map -->
-				<div class="col-xl-5 col-lg-6 offset-xl-1">
-					<div class="contact_map">
-
-						<!-- Google Map -->
-		
-						<div class="map">
-							<div id="google_map" class="google_map">
-								<div class="map_container">
-									<div id="map"></div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>
@@ -215,7 +192,6 @@
 <script src="{{ url_for('static', filename='plugins/progressbar/progressbar.min.js') }}"></script>
 <script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
 <script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDXyEG_jn0_Ao_7Aionc9RdSn4mBeMshXw"></script>
-<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
 </body>
 </html>

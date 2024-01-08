@@ -9,16 +9,23 @@ booking_blueprint = Blueprint("booking", __name__, url_prefix="/booking")
 @booking_blueprint.route("/create", methods=["POST"])
 def create():
     guest_id = request.json["guest_id"]
-    room_id = request.json["room_id"]
-    start_date = request.json["start_date"]
-    end_date = request.json["end_date"]
+    room_type = request.json["room_type"]
+    check_in_date = request.json["check_in_date"]
+    check_out_date = request.json["check_out_date"]
+    booking_date = request.json["booking_date"]
+
 
     guest = Guest.query.filter_by(guest_id=guest_id).first()
 
     if guest is None:
         return "Guest not found", 404
+    
+    room = Room.query.filter(Room.room_type.has(room_type=room_type)).first()
 
-    new_booking = Booking(guest_id=guest_id, room_id=room_id, start_date=start_date, end_date=end_date)
+    if room is None:
+        return "Room not found", 404
+
+    new_booking = Booking(guest_id=guest_id, room_number=room.room_number, check_in_date=check_in_date, check_out_date=check_out_date, booking_date=booking_date)
     new_booking.guests.append(Guest.query.filter_by(guest_id=guest_id).first())
 
     db.session.add(new_booking)
@@ -48,7 +55,7 @@ def update(booking_id):
     if booking is None:
         return "Booking not found", 404
 
-    booking.room_id = request.json["room_id"]
+    booking.room_number = request.json["room_number"]
     booking.start_date = request.json["start_date"]
     booking.end_date = request.json["end_date"]
 
@@ -123,13 +130,13 @@ def get_rooms(booking_id):
 
     return jsonify(rooms), 200
 
-@booking_blueprint.route("/<int:booking_id>/rooms/<int:room_id>", methods=["POST"])
-def add_room(booking_id, room_id):
+@booking_blueprint.route("/<int:booking_id>/rooms/<int:room_number>", methods=["POST"])
+def add_room(booking_id, room_number):
     booking = Booking.query.filter_by(booking_id=booking_id).first()
     if booking is None:
         return "Booking not found", 404
 
-    room = Room.query.filter_by(room_id=room_id).first()
+    room = Room.query.filter_by(room_number=room_number).first()
     if room is None:
         return "Room not found", 404
 

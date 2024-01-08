@@ -79,19 +79,6 @@
 					<div class="col">
 						<div class="home_content text-center">
 							<div class="home_title">Book a room</div>
-							<div class="booking_form_container">
-								<form action="#" class="booking_form" id="booking_form">
-									<div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
-										<div class="booking_input_container d-flex flex-row align-items-start justify-content-start flex-wrap">
-											<div><input type="text" class="datepicker booking_input booking_input_a booking_in" placeholder="Check in" required="required"></div>
-											<div><input type="text" class="datepicker booking_input booking_input_a booking_out" placeholder="Check out" required="required"></div>
-											<div><input type="number" class="booking_input booking_input_b" placeholder="Children" required="required"></div>
-											<div><input type="number" class="booking_input booking_input_b" placeholder="Room" required="required"></div>
-										</div>
-										<div><button class="booking_button trans_200">Book Now</button></div>
-									</div>
-								</form>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -129,7 +116,7 @@
 									</div>
 								</div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="{{ url_for('booking')}}">Family Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking_complete', room_type='Queen')}}">Queen size Room</a></div>
 							</div>
 
 							<!-- Slide -->
@@ -151,7 +138,7 @@
 									</div>
 								</div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="{{ url_for('booking')}}">Deluxe Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking_complete', room_type='King')}}">King size Room</a></div>
 							</div>
 
 							<!-- Slide -->
@@ -173,7 +160,7 @@
 									</div>
 								</div>
 								<div class="booking_price">$120/Night</div>
-								<div class="booking_link"><a href="{{ url_for('booking')}}">Single Room</a></div>
+								<div class="booking_link"><a href="{{ url_for('booking_complete', room_type='Single')}}">Single Room</a></div>
 							</div>
 
 						</div>
@@ -199,7 +186,7 @@
 				<!-- Details Content -->
 				<div class="col-xl-5 col-lg-6">
 					<div class="details_content">
-						<div class="details_title">Family Room</div>
+						<div class="details_title">Queen size Room</div>
 						<div class="details_list">
 							<ul>
 								<li>27 m² Patio</li>
@@ -244,7 +231,7 @@
 								<li>Upper floors accessible by lift</li>
 							</ul>
 						</div>
-						<div class="book_now_button"><a href="#">Book Now</a></div>
+						<div class="book_now_button"><a href="{{ url_for('booking_complete', room_type='Queen') }}">Book Now</a></div>
 					</div>
 				</div>
 
@@ -306,7 +293,7 @@
 								<li>Upper floors accessible by lift</li>
 							</ul>
 						</div>
-						<div class="book_now_button"><a href="#">Book Now</a></div>
+						<div class="book_now_button"><a href="{{ url_for('booking_complete', room_type='Double') }}">Book Now</a></div>
 					</div>
 				</div>
 
@@ -329,7 +316,7 @@
 			<div class="row">
 				<div class="col-xl-6 offset-xl-6 col-lg-8 offset-lg-2">
 					<div class="special_content">
-						<div class="details_title">Special Offer - Family Room</div>
+						<div class="details_title">Special Offer - Queen size Room</div>
 						<div class="details_list">
 							<ul>
 								<li>27 m² Patio</li>
@@ -374,7 +361,7 @@
 								<li>Upper floors accessible by lift</li>
 							</ul>
 						</div>
-						<div class="book_now_button"><a href="#">Book Now</a></div>
+						<div class="book_now_button"><a href="{{ url_for('booking_complete', room_type='Queen') }}">Book Now</a></div>
 					</div>
 				</div>
 			</div>
