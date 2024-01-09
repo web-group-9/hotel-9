@@ -1,13 +1,11 @@
 from flask import Blueprint, render_template, jsonify, request, redirect, url_for
-import os
-from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask_login import UserMixin, current_user, login_user, login_required
+from flask_login import current_user, login_user, login_required
 from app.models.booking import Booking
 from app.login_manager import users
 from app.models.room import Room
 from app.models.room_type import RoomType
+from app.database import db
 
 
 dashboard_blueprint = Blueprint("dashboard", __name__)
@@ -161,3 +159,56 @@ def error_404():
 @dashboard_blueprint.route("/forgot-password")
 def forgotpassword():
     return render_template("forgot-password.html")
+
+@dashboard_blueprint.route('/bookings')
+def bookings():
+    bookings = Booking.query.all()
+    room_type = RoomType.query.all()
+    for booking in bookings:
+        days_difference = (booking.check_out_date - booking.check_in_date).days + 1
+        if booking.rooms.first():
+            booking.total = float(booking.rooms.first().room_type.price_per_night) * days_difference
+    return render_template('dashboard/bookings.html', bookings=bookings,room_type=room_type)
+   
+  
+@dashboard_blueprint.route('/cancel_booking', methods=['POST'])
+def cancel_booking():
+    data = request.get_json()
+    booking_id = data.get('booking_id')
+    print(f"booking_id: {booking_id}")
+     
+    try:
+        booking = Booking.query.get(booking_id)
+        if booking:
+            db.session.delete(booking)
+            db.session.commit()
+            return jsonify({"status": "success", "message": "Booking deleted"})
+        else:
+            return jsonify({"status": "error", "message": "Booking not found"}), 404
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@dashboard_blueprint.route('/update_booking_date', methods=['POST'])
+def update_booking_date():
+    data = request.get_json()
+    booking_id = data['booking_id']
+    date_type = data['date_type']
+    new_date = data['new_date']
+    print(f"booking_id: {booking_id}, date_type: {date_type}, new_date: {new_date}")
+    
+    try:
+        booking = Booking.query.get(booking_id)
+        if booking:
+            if date_type == 'check_in_date':
+                booking.check_in_date = datetime.strptime(new_date, '%Y-%m-%d').date()
+            elif date_type == 'check_out_date':
+                booking.check_out_date = datetime.strptime(new_date, '%Y-%m-%d').date()
+            db.session.commit()
+            return jsonify({"status": "success", "message": "Booking date updated"})
+        else:
+            return jsonify({"status": "error", "message": "Booking not found"}), 404
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
