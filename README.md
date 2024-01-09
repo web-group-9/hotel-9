@@ -53,3 +53,45 @@ py .\frontend\frontend.py
 
 ## Enjoy
 The applications should now be running on your specified host and port, enjoy!
+
+### No work from teammate
+Julian Veit with student ID 112012066 did not do any work regarding this project despite promising to do so.
+
+# Requirements checklist
+
+## Hotel Frontend Website with Booking Feature
+
+### Design Elements:
+- [x] User-friendly interface.
+- [x] Display of hotel rooms, amenities, and services.
+- [x] An interactive booking form.
+### Functionality:
+- [x] Users can select room types, check-in and check-out dates.
+- [x] A booking confirmation process.
+- [ ] User authentication for booking (optional).
+
+## Admin Website for Managing Bookings
+
+### Design Elements:
+- [x] A dashboard-like interface.
+- [ ] Sections for different administrative tasks.
+### Functionality:
+- [x] Listing all bookings with details.
+- [x] Capabilities to modify or cancel bookings (optional).
+- [ ] Search and filter options for bookings (optional).
+
+## PostgreSQL Database:
+
+### Tables:
+- [x] Guests: storing guest name, contact information.
+- [x] Bookings: storing booking details like check-in, check-out dates, and linked to guest information.
+### Integration:
+- [x] Flask app connects to the PostgreSQL database for data retrieval and updates.
+
+## Deployment:
+- [x] Deploy both websites to a web server.
+- [x] Using a custom domain name.
+
+## Security and Performance:
+- [ ] Implement security best practices (like SSL, input validation).
+- [x] Ensure good performance and responsive design.
