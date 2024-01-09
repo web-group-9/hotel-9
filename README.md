@@ -4,6 +4,19 @@ Hotel repository for the front- and backend application
 # Execute hotel-9 application
 This documentation assumes that you already have a postgres database setup with the schemes for the hotel
 
+## Restore Database schema
+Using pgAdmin:
+
+1. Open pgAdmin.
+
+2. Connect to your PostgreSQL server.
+
+3. Right-click on the target database and choose Restore....
+
+4. In the Filename field, browse and select backup file "hotel9".
+
+5. Click Restore.
+
 ## Create environment
 ```
 py -3 -m venv .venv
@@ -31,11 +44,11 @@ git update-index --assume-unchanged .\backend\.env
 Enter the following commands in seperate terminals to run the application backend and/or frontend
 ### Backend:
 ```
-py .\frontend\frontend.py
+py .\backend\backend.py
 ```
 ### Frontend:
 ```
-py .\backend\backend.py
+py .\frontend\frontend.py
 ```
 
 ## Enjoy
